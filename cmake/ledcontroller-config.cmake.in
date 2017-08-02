@@ -1,0 +1,54 @@
+# LEDController CMake config file
+#
+# This file sets the following variables:
+# LEDController_FOUND - Always TRUE.
+# LEDController_INCLUDE_DIRS - Directories containing the LEDController include files.
+# LEDController_IDL_DIRS - Directories containing the LEDController IDL files.
+# LEDController_LIBRARIES - Libraries needed to use LEDController.
+# LEDController_DEFINITIONS - Compiler flags for LEDController.
+# LEDController_VERSION - The version of LEDController found.
+# LEDController_VERSION_MAJOR - The major version of LEDController found.
+# LEDController_VERSION_MINOR - The minor version of LEDController found.
+# LEDController_VERSION_REVISION - The revision version of LEDController found.
+# LEDController_VERSION_CANDIDATE - The candidate version of LEDController found.
+
+message(STATUS "Found LEDController-@PROJECT_VERSION@")
+set(LEDController_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(LEDController_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(LEDController_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(LEDController_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(LEDController_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(LEDController_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(LEDController_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(LEDController_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(LEDController_VERSION @PROJECT_VERSION@)
+set(LEDController_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(LEDController_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(LEDController_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(LEDController_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
