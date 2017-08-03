@@ -27,7 +27,8 @@ static const char* ledcontroller_spec[] =
     // Configuration variables
     "conf.default.debug", "1",
     //    "conf.default.port", "/dev/ttyUSB0",
-    "conf.default.port", "/dev/tty.wchusbserial14530",
+    //"conf.default.port", "/dev/tty.wchusbserial14530",
+    "conf.default.port", "/dev/cu.usbmodem1451",
     "conf.default.baudrate", "9600", 
     // Widget
     "conf.__widget__.debug", "text",
